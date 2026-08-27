@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Secrets never belong in the repo. Only .env.example is tracked.
+.env
+.env.*
+!.env.example
+
+.DS_Store
+*.log

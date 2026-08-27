@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "composite": false,
+    "declaration": false,
+    "declarationMap": false,
+    "incremental": false,
+    "types": ["node"],
+    "paths": {
+      "@timerich/shared": ["./packages/shared/src/index.ts"]
+    }
+  },
+  "include": ["packages/*/test/**/*.ts", "agents/*/test/**/*.ts", "vitest.config.ts"]
+}

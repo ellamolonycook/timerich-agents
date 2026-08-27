@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/shared" },
+    { "path": "agents/podcast-outreach" },
+    { "path": "agents/outbound-data" },
+    { "path": "agents/speaking-ops" },
+    { "path": "agents/sally" }
+  ]
+}
