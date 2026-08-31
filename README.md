@@ -113,7 +113,8 @@ timerich-agents/
 │       │   └── core/               Errors, clock, id generation
 │       └── test/
 ├── agents/
-│   ├── podcast-outreach/           Scaffolded: manifest, types, agent, tests
+│   ├── podcast-outreach/           Workflow: intake, screening, ledger,
+│   │                               policy, composer, approval submission
 │   ├── outbound-data/              Placeholder manifest
 │   ├── speaking-ops/               Placeholder manifest
 │   └── sally/                      Placeholder manifest
@@ -155,7 +156,7 @@ Design rules that keep it reusable:
 
 | Agent | Status | Notes |
 | --- | --- | --- |
-| Podcast Outreach | Scaffolded | Screening, de-duplication, drafting port, approval submission. Integrations not implemented. See [agents/podcast-outreach/README.md](agents/podcast-outreach/README.md). |
+| Podcast Outreach | Workflow implemented | Intake, screening, cross-run dedupe, rate limiting, composition port, approval submission. No provider integrations. See [agents/podcast-outreach/README.md](agents/podcast-outreach/README.md). |
 | Outbound Data | Placeholder | Manifest only, pending spec. |
 | Speaking Ops | Placeholder | Manifest only, pending spec. |
 | Sally | Placeholder | Manifest only, pending spec. |
@@ -169,11 +170,14 @@ so no agent can declare itself exempt from review.
 
 - No connector implementations. Instantly, ZeroBounce, Resend, WhatsApp and
   LinkedIn are named nowhere in the code, only as commented placeholders in
-  `.env.example`.
+  `.env.example`. Podcast Outreach runs against in-memory adapters
+  (`InMemoryProspectSource`, `InMemoryOutreachLedger`) that perform no I/O.
 - No credentials. Secrets are referenced by name via `SecretRef` and resolved at
   runtime through a `SecretProvider`. Nothing is hardcoded.
-- No message composition. The Podcast Outreach composer is a port whose default
-  implementation throws `NotImplementedError`.
+- No pitch copy. The Podcast Outreach composer is a port whose default
+  implementation throws `NotImplementedError`; the shipped
+  `templateOutreachComposer` renders a caller-supplied template and invents
+  nothing of its own.
 - No scheduler. The agent contract is scheduler-agnostic on purpose.
 - No durable approval store. `InMemoryApprovalStore` implements the four-method
   `ApprovalStore` port; a database-backed store drops in without touching agents.
