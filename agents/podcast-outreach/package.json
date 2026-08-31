@@ -12,9 +12,11 @@
       "default": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc --build",
+    "build": "node init && tsc --build",
     "clean": "tsc --build --clean"
   },
   "dependencies": {

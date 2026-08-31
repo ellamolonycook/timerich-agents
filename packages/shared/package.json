@@ -13,9 +13,11 @@
     },
     "./package.json": "./package.json"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc --build",
+    "build": "node init && tsc --build",
     "clean": "tsc --build --clean"
   }
 }

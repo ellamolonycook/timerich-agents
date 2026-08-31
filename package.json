@@ -12,7 +12,7 @@
     "agents/*"
   ],
   "scripts": {
-    "build": "tsc --build",
+    "build": "node init && tsc --build",
     "clean": "tsc --build --clean",
     "typecheck": "tsc --build --force && tsc -p tsconfig.test.json",
     "test": "vitest run",
@@ -21,6 +21,8 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^3.3.2",
     "typescript": "^5.7.2",
     "vitest": "^2.1.8"
   }
